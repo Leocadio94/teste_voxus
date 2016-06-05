@@ -27,7 +27,7 @@
             $q = $pdo->prepare($sql);
             $q->execute(array($titulo,$texto));
             Conexao::disconnect();
-            header("Location: index.php");
+            header("Location: ver_noticias.php");
         }
     }
 ?>
