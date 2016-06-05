@@ -24,16 +24,32 @@
                 <div class="col-lg-12">
                     <h1 class="page-header text-center">Leitura de Notícias</h1>
                     
-                    <form>    
-                        <div class="form-group">
-                        </div>
-                    </form>
-                    <hr/>
-                    <div class="footer text-center center-block">
-                        <span>Desenvolvido por Gabriel Leocádio - <a href="https://br.linkedin.com/in/gabrielleocadio" target="_blank"><i class="fa fa-linkedin"></i>
-                        Linkedin</a> / <a href="https://github.com/Leocadio94" target="_blank"><i class="fa fa-github"></i>
-                         GitHub</a></span>
+                    <div class="row">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Titulo</th>
+                                    <th>Texto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    include 'lib/conexao.php';
+                                    $pdo = Conexao::connect();
+                                    $sql = 'SELECT * FROM noticia ORDER BY id_noticia DESC';
+                                    foreach ($pdo->query($sql) as $row) {
+                                            echo '<tr>';
+                                            echo '<td>'. $row['titulo'] . '</td>';
+                                            echo '<td>'. $row['texto'] . '</td>';
+                                            echo '</tr>';
+                                    }
+                                    Conexao::disconnect();
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
+                    <hr/>
+                    <?php require 'templates/footer.php' ?>
                 </div>
             </div>
         </div>

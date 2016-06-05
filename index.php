@@ -1,3 +1,36 @@
+<?php
+     
+    require 'lib/conexao.php';
+ 
+    if (!empty($_POST)) {
+        $erroTitulo = null;
+        $erroTexto = null;
+         
+        $titulo = $_POST['titulo'];
+        $texto = $_POST['texto'];
+         
+        $valido = true;
+        if (empty($titulo)) {
+            $erroTitulo = 'Por favor, preencha o campo Titulo!';
+            $valido = false;
+        }
+         
+        if (empty($texto)) {
+            $erroTexto = 'Por favor, preencha o campo Texto!';
+            $valido = false;
+        } 
+
+        if ($valido) {
+            $pdo = Conexao::connect();
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "INSERT INTO noticia (titulo,texto) values(?, ?)";
+            $q = $pdo->prepare($sql);
+            $q->execute(array($titulo,$texto));
+            Conexao::disconnect();
+            header("Location: index.php");
+        }
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,16 +57,30 @@
                 <div class="col-lg-12">
                     <h1 class="page-header text-center">Cadastro de Notícias</h1>
                     
-                    <form>    
-                        <div class="form-group">
+                    <form class="form-horizontal" action="index.php" method="post">
+                        <div class="form-group <?php echo !empty($erroTitulo)?'error':'';?>">
+                            <label>Titulo</label>
+                            <div class="controls">
+                                <input class="form-control" name="titulo" type="text"  placeholder="Titulo" value="<?php echo !empty($titulo)?$titulo:'';?>">
+                                <?php if (!empty($erroTitulo)): ?>
+                                    <span class="help-inline"><?php echo $erroTitulo;?></span>
+                                <?php endif; ?>
+
+                            </div>
+                        </div>  
+                        <div class="form-group <?php echo !empty($erroTexto)?'error':'';?>">
+                            <label>Texto</label>
+                            <div class="controls">
+                                <textarea class="form-control" name="texto" type="text" placeholder="Texto" value="<?php echo !empty($texto)?$texto:'';?>"></textarea>
+                                <?php if (!empty($erroTexto)): ?>
+                                    <span class="help-inline"><?php echo $erroTexto;?></span>
+                                <?php endif;?>
+                            </div>
                         </div>
+                        <button type="submit" class="btn btn-success">Salvar</button>
                     </form>
                     <hr/>
-                    <div class="footer text-center center-block">
-                        <span>Desenvolvido por Gabriel Leocádio - <a href="https://br.linkedin.com/in/gabrielleocadio" target="_blank"><i class="fa fa-linkedin"></i>
-                        Linkedin</a> / <a href="https://github.com/Leocadio94" target="_blank"><i class="fa fa-github"></i>
-                         GitHub</a></span>
-                    </div>
+                    <?php require 'templates/footer.php' ?>
                 </div>
             </div>
         </div>
