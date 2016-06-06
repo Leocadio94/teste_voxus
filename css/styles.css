@@ -1,9 +1,20 @@
+p {
+	font-size: 1.3em;
+}
+
 .btn {
-  background-color: rgba(0, 60, 40, 1);
-  padding-botton: 20px;  
+	padding-botton: 20px;  
 }
 
 .btn:hover {
-  transition: 0.3s;  
-  box-shadow: 5px 5px 5px #000000;
+  	transition: 0.3s;  
+  	box-shadow: 5px 5px 5px #000000;
+}
+
+.btn-default {
+	background-color: #DEE2E3;
+}
+
+.btn-success {
+  	background-color: #3AD91E;
 }

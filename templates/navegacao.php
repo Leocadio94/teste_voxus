@@ -7,12 +7,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.php"><i class="fa fa-home fa-fw"> </i> Notícias</a>
+      <a id="home" class="navbar-brand active" href="index.php"><i class="fa fa-home fa-fw"> </i></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a href="index.php">Cadastro de Notícias</a></li>
-        <li><a href="ver_noticias.php">Leitura de Notícias</a></li>
+        <li id="menu1"><a href="create_noticias.php">Cadastro de Notícias</a></li>
+        <li id="menu2"><a href="read_noticias.php">Leitura de Notícias</a></li>
       </ul>
     </div>
   </div>

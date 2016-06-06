@@ -25,7 +25,7 @@
                     <h1 class="page-header text-center">Leitura de Notícias</h1>
                     
                     <div class="row">
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>Titulo</th>
@@ -54,7 +54,8 @@
             </div>
         </div>
 
-        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="js/script.js"></script>
     </body>
 </html>
